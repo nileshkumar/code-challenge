@@ -57,5 +57,12 @@ class CompaniesControllerTest < ApplicationSystemTestCase
     assert_equal "New Test Company", last_company.name
     assert_equal "28173", last_company.zip_code
   end
+  
+  test "Destroy" do
+    visit company_path(@company)
+
+    @company.destroy
+    assert_equal nil, Company.find_by_id(@company.id)
+  end
 
 end
