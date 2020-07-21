@@ -33,8 +33,11 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
-    @company.destroy
-    redirect_to companies_path, notice: "You deleted #{@company.name} successfully!"
+    if @company.destroy
+      redirect_to companies_path, notice: "You deleted #{@company.name} successfully!"
+    else
+      redirect_to company_path, notice: 'Something went wrong in deleting'
+    end
   end
 
   private
