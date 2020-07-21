@@ -58,13 +58,14 @@ class CompaniesControllerTest < ApplicationSystemTestCase
     assert_equal "28173", last_company.zip_code
   end
   
-  test "Create with invalid email" do
+  test "Create with email having invalid domain" do
     visit new_company_path
     
     within("form#new_company") do
       fill_in("company_name", with: "New Test Company")
       fill_in("company_email", with: "abc@xyz.com")
       fill_in("company_zip_code", with: "28173")
+      fill_in("company_phone", with: "1253335555")
       click_button "Create Company"
     end
     
