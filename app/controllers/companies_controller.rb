@@ -34,9 +34,9 @@ class CompaniesController < ApplicationController
 
   def destroy
     if @company.destroy
-      redirect_to companies_path, notice: "You deleted #{@company.name} successfully!"
+      redirect_to companies_path, notice: "Deleted"
     else
-      redirect_to company_path, notice: 'Something went wrong in deleting'
+      redirect_to company_path(@company), notice: 'Something went wrong in deleting'
     end
   end
 
@@ -50,7 +50,7 @@ class CompaniesController < ApplicationController
       :zip_code,
       :phone,
       :email,
-      :owner_id,
+      :owner_id
     )
   end
 
