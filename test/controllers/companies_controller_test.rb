@@ -21,7 +21,8 @@ class CompaniesControllerTest < ApplicationSystemTestCase
     assert_text @company.name
     assert_text @company.phone
     assert_text @company.email
-    assert_text "City, State"
+    assert_text @company.city
+    assert_text @company.state
   end
 
   test "Update" do
@@ -34,10 +35,13 @@ class CompaniesControllerTest < ApplicationSystemTestCase
     end
 
     assert_text "Changes Saved"
+    city_state = ZipCodes.identify('93009')
 
     @company.reload
     assert_equal "Updated Test Company", @company.name
     assert_equal "93009", @company.zip_code
+    assert_equal city_state[:city], @company.city
+    assert_equal city_state[:state_code], @company.state
   end
 
   test "Create" do
@@ -58,7 +62,7 @@ class CompaniesControllerTest < ApplicationSystemTestCase
     assert_equal "28173", last_company.zip_code
   end
   
-  test "Create with email having invalid domain" do
+  test "Create company with email having invalid domain" do
     visit new_company_path
     
     within("form#new_company") do
