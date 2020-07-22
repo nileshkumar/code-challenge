@@ -14,7 +14,9 @@
       <h1><%= @company.name %></h1>
       <h3>City, State</h3>
       <pre>☝️ This is what needs to be udpated. Examples: Atlanta, GA or Nashvile, TN</pre>
-      <h3><%= @company.city %>, <%= @company.state %></h3>
+      <% if @company.city && @company.state %>
+        <h3><%= @company.city %>, <%= @company.state %></h3>
+      <% end %>
     </div>
   </div>
   <% if @company.description.present? %>
